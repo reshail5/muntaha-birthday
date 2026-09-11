@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Muntaha! 🎉✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas for Confetti & Fireworks -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Background Decorative Glowing Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Floating Balloons Container -->
+  <div id="balloonsContainer" class="balloons-container" aria-hidden="true"></div>
+
+  <!-- Sticky Audio & Confetti Quick Controls -->
+  <header class="top-bar">
+    <div class="badge-pill">🎂 It's Muntaha's Special Day!</div>
+    <div class="action-controls">
+      <button id="musicToggleBtn" class="control-btn" title="Toggle Birthday Melody">
+        <span class="btn-icon" id="musicIcon">🎵</span>
+        <span class="btn-text" id="musicText">Play Music</span>
+      </button>
+      <button id="popperBtn" class="control-btn popper-btn" title="Trigger Confetti Cannon">
+        <span class="btn-icon">🎉</span>
+        <span class="btn-text">Confetti!</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="sparkle-tag">✨ A Very Special Celebration ✨</div>
+      <h1 class="hero-title">
+        Happy Birthday, <br>
+        <span class="name-gradient">Muntaha!</span>
+      </h1>
+      <p class="hero-subtitle">
+        Wishing you a magnificent year ahead packed with boundless happiness, glowing triumphs, and cherished moments!
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#cakeSection" class="primary-btn pulse-anim">
+          🎂 Make a Wish
+        </a>
+        <a href="#giftSection" class="secondary-btn">
+          🎁 Open Surprise
+        </a>
+      </div>
+    </section>
+
+    <!-- Interactive Birthday Cake Section -->
+    <section id="cakeSection" class="section-card cake-section">
+      <div class="section-header">
+        <span class="section-emoji">🎂</span>
+        <h2 class="section-heading">Virtual Cake & Candle Ceremony</h2>
+        <p class="section-subtext">Tap the candles or use the button below to blow them out, make your heartfelt wish, and cut a celebratory slice!</p>
+      </div>
+
+      <div class="cake-display-area">
+        <!-- Interactive Cake -->
+        <div class="cake-container" id="cakeContainer">
+          <!-- Plate -->
+          <div class="cake-plate"></div>
+          
+          <!-- Tier 1 (Bottom) -->
+          <div class="cake-tier tier-bottom">
+            <div class="frosting-layer"></div>
+            <div class="cake-pattern"></div>
+          </div>
+
+          <!-- Tier 2 (Middle) -->
+          <div class="cake-tier tier-middle">
+            <div class="frosting-layer"></div>
+            <div class="cake-pattern"></div>
+          </div>
+
+          <!-- Tier 3 (Top) -->
+          <div class="cake-tier tier-top">
+            <div class="frosting-layer"></div>
+            <div class="cake-strawberries">
+              <span>🍓</span><span>🍓</span><span>🍓</span>
+            </div>
+          </div>
+
+          <!-- Candles Container -->
+          <div class="candles-wrapper" id="candlesWrapper">
+            <!-- Candle 1 -->
+            <div class="candle candle-1">
+              <div class="flame" id="flame1"></div>
+              <div class="smoke" id="smoke1"></div>
+              <div class="wick"></div>
+              <div class="candle-body"></div>
+            </div>
+            <!-- Candle 2 (Center) -->
+            <div class="candle candle-2">
+              <div class="flame" id="flame2"></div>
+              <div class="smoke" id="smoke2"></div>
+              <div class="wick"></div>
+              <div class="candle-body"></div>
+            </div>
+            <!-- Candle 3 -->
+            <div class="candle candle-3">
+              <div class="flame" id="flame3"></div>
+              <div class="smoke" id="smoke3"></div>
+              <div class="wick"></div>
+              <div class="candle-body"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cake Message Banner -->
+        <div class="cake-message-box" id="cakeMessageBox">
+          <p id="cakeStatusText">The candles are burning bright! Make a wish and blow them out! ✨</p>
+        </div>
+
+        <!-- Interactive Cake Action Buttons -->
+        <div class="cake-actions">
+          <button id="blowCandlesBtn" class="action-pill-btn blow-btn">
+            💨 Blow the Candles
+          </button>
+          <button id="relightCandlesBtn" class="action-pill-btn relight-btn hidden">
+            ✨ Relight Candles
+          </button>
+          <button id="cutCakeBtn" class="action-pill-btn cut-btn">
+            🍰 Cut a Slice
+          </button>
+        </div>
+
+        <!-- Cake Slice Modal / Reveal Card -->
+        <div id="cakeSliceModal" class="slice-card hidden">
+          <div class="slice-icon">🍰</div>
+          <h3>A Sweet Slice for Muntaha!</h3>
+          <p>“May your life be as sweet, rich, and filled with joy as the most delicious slice of birthday cake!”</p>
+          <button id="closeSliceBtn" class="close-btn">Enjoy! 😋</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Surprise Gift Box Section -->
+    <section id="giftSection" class="section-card gift-section">
+      <div class="section-header">
+        <span class="section-emoji">🎁</span>
+        <h2 class="section-heading">A Gift for You, Muntaha</h2>
+        <p class="section-subtext">Click the gift box to unlock your special birthday surprise!</p>
+      </div>
+
+      <div class="gift-interactive-wrapper">
+        <div class="gift-box-stage" id="giftStage">
+          <!-- 3D Animated Gift Box -->
+          <div class="gift-box" id="giftBox" role="button" tabindex="0" title="Click to open the gift!">
+            <div class="gift-lid" id="giftLid">
+              <div class="gift-bow">
+                <div class="bow-loop bow-left"></div>
+                <div class="bow-loop bow-right"></div>
+                <div class="bow-center"></div>
+              </div>
+              <div class="ribbon-horizontal"></div>
+            </div>
+            <div class="gift-body">
+              <div class="ribbon-vertical"></div>
+              <div class="gift-tag">For Muntaha 💌</div>
+            </div>
+          </div>
+          <p class="tap-hint" id="giftHint">👆 Tap the box to unwrap!</p>
+        </div>
+
+        <!-- Revealed Letter / Greeting Card -->
+        <div class="birthday-letter-card hidden" id="birthdayLetter">
+          <div class="letter-stamp">✨ 2026 Special Edition ✨</div>
+          <h3 class="letter-title">Dearest Muntaha,</h3>
+          <div class="letter-body">
+            <p>
+              On this wonderful day, the world became brighter and infinitely more special because of you!
+            </p>
+            <p>
+              May this new chapter bring you endless reasons to smile, peaceful days filled with warmth, great health, and the courage to pursue every ambition in your heart. You deserve all the good things life has to offer!
+            </p>
+            <p class="letter-highlight">
+              Keep shining, inspiring, and bringing joy wherever you go! 🌟
+            </p>
+          </div>
+          <div class="letter-footer">
+            <span>With heartfelt wishes,</span>
+            <span class="signature">Warmest Regards & Cheers 🥂</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wishes & Messages Board -->
+    <section class="section-card wishes-section">
+      <div class="section-header">
+        <span class="section-emoji">💌</span>
+        <h2 class="section-heading">Wishes & Blessings</h2>
+        <p class="section-subtext">Special wishes for Muntaha. Add your own message below!</p>
+      </div>
+
+      <!-- Pre-populated Cards Grid -->
+      <div class="wishes-grid" id="wishesGrid">
+        <div class="wish-card card-pink">
+          <div class="card-icon">🌸</div>
+          <h4>Radiant Happiness</h4>
+          <p>“May your days be sprinkled with laughter, sunny smiles, and moments that make your heart sing!”</p>
+          <div class="card-author">— Always smiling</div>
+        </div>
+
+        <div class="wish-card card-purple">
+          <div class="card-icon">🚀</div>
+          <h4>Limitless Success</h4>
+          <p>“May every aspiration and goal you work towards turn into a glorious victory this year!”</p>
+          <div class="card-author">— Big Dreams</div>
+        </div>
+
+        <div class="wish-card card-gold">
+          <div class="card-icon">✨</div>
+          <h4>Inner Peace & Joy</h4>
+          <p>“Wishing you deep serenity, thriving health, and boundless energy to explore every wondrous path.”</p>
+          <div class="card-author">— Warm Blessings</div>
+        </div>
+
+        <div class="wish-card card-cyan">
+          <div class="card-icon">💎</div>
+          <h4>Cherished Memories</h4>
+          <p>“May this year gift you unforgettable adventures and timeless memories with loved ones.”</p>
+          <div class="card-author">— True Friendship</div>
+        </div>
+      </div>
+
+      <!-- Leave a Wish Form -->
+      <div class="add-wish-container">
+        <h3>Leave a Personalized Wish for Muntaha ✍️</h3>
+        <form id="wishForm" class="wish-form">
+          <div class="form-row">
+            <input type="text" id="authorInput" placeholder="Your Name" required maxlength="40">
+            <select id="cardThemeSelect">
+              <option value="card-pink">🌸 Rose Petal</option>
+              <option value="card-purple">💜 Royal Violet</option>
+              <option value="card-gold">✨ Amber Gold</option>
+              <option value="card-cyan">🌊 Ocean Glow</option>
+            </select>
+          </div>
+          <textarea id="messageInput" placeholder="Write your warm birthday message for Muntaha here..." required rows="3" maxlength="250"></textarea>
+          <button type="submit" class="primary-btn submit-wish-btn">
+            📌 Pin Your Wish to the Wall
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Balloon Popping Game Mini-Badge -->
+    <section class="pop-game-tip">
+      <p>🎈 <strong>Interactive Fun:</strong> Click on any floating balloon to pop it with a burst of confetti!</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>Handcrafted with ❤️ & celebration for <strong>Muntaha</strong> • Happy Birthday! 🎂✨</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
